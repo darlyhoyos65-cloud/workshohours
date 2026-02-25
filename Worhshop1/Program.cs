@@ -7,7 +7,6 @@ public class Time
     private int second;
     private int millisecond;
 
-    // Constructor with no parameters
     public Time()
     {
         hour = 0;
@@ -16,22 +15,18 @@ public class Time
         millisecond = 0;
     }
 
-    // Constructor with hours
     public Time(int h) : this(h, 0, 0, 0)
     {
     }
 
-    // Constructor with hours and minutes
     public Time(int h, int m) : this(h, m, 0, 0)
     {
     }
 
-    // Constructor with hours, minutes and seconds
     public Time(int h, int m, int s) : this(h, m, s, 0)
     {
     }
 
-    // Constructor with hours, minutes, seconds and milliseconds
     public Time(int h, int m, int s, int ms)
     {
         if (h < 0 || h > 23)
@@ -52,7 +47,6 @@ public class Time
         millisecond = ms;
     }
 
-    // Returns time in AM/PM format
     public override string ToString()
     {
         int displayHour = hour;
@@ -75,7 +69,6 @@ public class Time
                period;
     }
 
-    // Returns total milliseconds
     public long ToMilliseconds()
     {
         return (hour * 3600000L) +
@@ -84,7 +77,6 @@ public class Time
                millisecond;
     }
 
-    // Returns total seconds
     public long ToSeconds()
     {
         return (hour * 3600L) +
@@ -92,13 +84,11 @@ public class Time
                second;
     }
 
-    // Returns total minutes
     public long ToMinutes()
     {
         return (hour * 60L) + minute;
     }
 
-    // Checks if adding another Time passes to next day
     public bool IsOtherDay(Time other)
     {
         long totalMilliseconds = this.ToMilliseconds() + other.ToMilliseconds();
@@ -107,7 +97,6 @@ public class Time
         return totalMilliseconds >= millisecondsInDay;
     }
 
-    // Adds two Time objects
     public Time Add(Time other)
     {
         int newMillisecond = this.millisecond + other.millisecond;
@@ -143,18 +132,14 @@ class Program
 
             Time[] times = { t1, t2, t3, t4, t5 };
 
-            Console.WriteLine("Original times:\n");
-
             foreach (Time t in times)
             {
-                Console.WriteLine("Time: " + t.ToString());
-                Console.WriteLine("Milliseconds: " + t.ToMilliseconds());
-                Console.WriteLine("Seconds: " + t.ToSeconds());
-                Console.WriteLine("Minutes: " + t.ToMinutes());
+                Console.WriteLine(t.ToString());
+                Console.WriteLine(t.ToMilliseconds());
+                Console.WriteLine(t.ToSeconds());
+                Console.WriteLine(t.ToMinutes());
                 Console.WriteLine();
             }
-
-            Console.WriteLine("Adding t3:\n");
 
             foreach (Time t in times)
             {
@@ -162,7 +147,7 @@ class Program
                 Console.WriteLine(t.ToString() + " + " + t3.ToString() + " = " + result.ToString());
             }
 
-            Console.WriteLine("\nChecking if it passes to next day with t4:\n");
+            Console.WriteLine();
 
             foreach (Time t in times)
             {
